@@ -1,0 +1,199 @@
+/* ==========================================================================
+   BIBLIOTHEEK — gaya global: token desain, reset, dan utilitas bersama
+   ========================================================================== */
+
+:root {
+	/* Palet identitas */
+	--cream: #f3e8a4;
+	--gold: #f2a900;
+	--brown: #8b5e3c;
+	--ink: #242111;
+
+	/* Turunan netral (kontras sudah diperiksa terhadap --ink) */
+	--paper: #fffbe8;
+	--surface: #fffef7;
+	--ink-soft: #55513a;
+	--line: rgb(36 33 17 / 0.2);
+
+	/* Tipografi */
+	--font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+	--font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+	/* Ukuran */
+	--radius: 4px;
+	--maxw: 1180px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 1.0625rem;
+	line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 700;
+	line-height: 1.15;
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+:focus-visible {
+	outline: 3px solid var(--ink);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+/* ---------- Utilitas ---------- */
+
+.container {
+	width: min(100% - 2.5rem, var(--maxw));
+	margin-inline: auto;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.skip-link {
+	position: absolute;
+	left: 1rem;
+	top: -4rem;
+	z-index: 100;
+	padding: 0.75rem 1rem;
+	background: var(--ink);
+	color: var(--cream);
+	font-weight: 700;
+}
+
+.skip-link:focus {
+	top: 1rem;
+	outline-color: var(--gold);
+}
+
+.eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--ink);
+}
+
+.eyebrow::before {
+	content: '';
+	flex: none;
+	width: 2rem;
+	height: 3px;
+	background: var(--brown);
+}
+
+/* Pita tipis bermotif garis selang-seling, satu-satunya ornamen dekoratif */
+.rule-band {
+	height: 6px;
+	background: repeating-linear-gradient(90deg, var(--brown) 0 14px, var(--gold) 14px 28px);
+}
+
+/* ---------- Tombol ---------- */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 2.75rem;
+	padding: 0.6rem 1.25rem;
+	border: 2px solid var(--ink);
+	border-radius: var(--radius);
+	font: inherit;
+	font-weight: 700;
+	line-height: 1.2;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		background-color 0.15s ease,
+		color 0.15s ease;
+}
+
+.btn--primary {
+	background: var(--gold);
+	color: var(--ink);
+}
+
+.btn--primary:hover {
+	background: var(--ink);
+	color: var(--cream);
+}
+
+.btn--ghost {
+	background: transparent;
+	color: var(--ink);
+}
+
+.btn--ghost:hover {
+	background: var(--cream);
+}
+
+.badge-sample {
+	display: inline-block;
+	padding: 0.1rem 0.5rem;
+	border: 1px dashed var(--brown);
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
