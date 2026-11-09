@@ -16,5 +16,21 @@ export const actions: Actions = {
 		if (error || !data?.length) return fail(400, { message: 'Buku tidak dapat dihapus.' });
 
 		return { success: true };
+	},
+
+	unggulan: async ({ request, locals }) => {
+		await requireAdmin(locals);
+		const form = await request.formData();
+		const id = String(form.get('id') ?? '');
+		const nilai = form.get('nilai') === 'true';
+
+		const { data, error } = await locals.supabase
+			.from('buku')
+			.update({ unggulan: nilai })
+			.eq('id', id)
+			.select('id');
+		if (error || !data?.length) return fail(400, { message: 'Status unggulan tidak dapat diubah.' });
+
+		return { success: true };
 	}
 };
